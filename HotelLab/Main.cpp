@@ -4,14 +4,14 @@
 	Hotel Occupancy
 	Page #294-295*/
 
-#include<iostream>
-#include<iomanip>
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main()
 {
 	const short int PERCENTAGE = 100;
-	int hotelFloors, rooms, occupiedRooms, //"unOccupiedRooms" isn't necessary. 
+	int hotelFloors = 0, rooms, occupiedRooms, //"unOccupiedRooms" isn't necessary. 
 		totalRooms = 0, totalOccupiedRooms = 0, totalUnoccupiedRooms;
 	double percentage_of_rooms_unoccupied;
 	//Explain to the user what this program is designed to do.
@@ -23,32 +23,38 @@ int main()
 	cout << "How many floors does this hotel contain? \n";
 	cin >> hotelFloors;
 
+	if (hotelFloors >= 13)
+	{
+		hotelFloors += 1;
+	}						/************************************************************************************************
+						     *The total number of hotel floors must still be counted for the math and logic to be correct.	*
+							 *With 13th floor iteration is being skipped,													*
+							 *a placeholder for the missing floor must go in it's place										*
+							 ************************************************************************************************/
+
 	while (hotelFloors <= 1)
 	{
 		cout << "You must enter a value of floors greater than 1. \n"
 			"It doesn't count as a hotel if it only has the ground floor. \n";
-		cin.clear();
+		//cin.clear();
 		cin >> hotelFloors;
 		
 	}
-
+	
 	for (int floorCount = 1; floorCount <= hotelFloors; hotelFloors--)
 	{
-
 		if (hotelFloors == 13)
 			--hotelFloors;
 		//Ask about how many rooms does the floor have? (Room values cannot be less than 10)
 		
-		cout << "How many rooms does floor No." << hotelFloors << " have? \n";
+		cout << "How many rooms does floor No." << hotelFloors << " have? \n"
+			"A hotel floor must have at least 10 rooms. \n";
 
 		cin >> rooms;
 
-		
-
 		while (rooms < 10)
 		{
-			cout << "ERROR: Surely a hotel floor would have at least ten rooms? \n"
-			"Please try once more. \n";
+			cout << "A hotel floor must have at least 10 rooms. \n Please try again. \n";
 			
 			cin.clear();
 			cin >> rooms;
@@ -77,7 +83,7 @@ int main()
 
 	//totalRooms += rooms;
 
-	totalOccupiedRooms += occupiedRooms;
+	//totalOccupiedRooms += occupiedRooms;
 	
 	totalUnoccupiedRooms = totalRooms - totalOccupiedRooms;
 
